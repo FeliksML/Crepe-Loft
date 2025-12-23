@@ -1,0 +1,9 @@
+export { Header } from './Header';
+export { Hero } from './Hero';
+export { StorySection } from './StorySection';
+export { SignatureSection } from './SignatureSection';
+export { CrepeGallery } from './CrepeGallery';
+export { VisitCard } from './VisitCard';
+export { Footer } from './Footer';
+export { CTAButton } from './CTAButton';
+export { ParisIllustration } from './ParisIllustration';

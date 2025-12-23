@@ -1,4 +1,3 @@
-import { Nunito_Sans } from 'next/font/google';
 import { siteConfig } from '@/data/config/site.settings';
 import { ThemeProviders } from './theme-providers';
 import { Metadata } from 'next';
@@ -9,24 +8,12 @@ import '@/css/globals.css';
 import { SearchProvider } from '@/components/shared/SearchProvider';
 import { AnalyticsWrapper } from '@/components/shared/Analytics';
 
-const displayFont = Nunito_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-display',
-});
-
-const baseFont = Nunito_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-default',
-});
-
 const globalColors = colors;
 const style: string[] = [];
 
 Object.keys(globalColors).map((variant) => {
-  return Object.keys(globalColors[variant]).map((color) => {
-    const value = globalColors[variant][color];
+  return Object.keys(globalColors[variant as keyof typeof globalColors]).map((color) => {
+    const value = globalColors[variant as keyof typeof globalColors][color as keyof (typeof globalColors)[keyof typeof globalColors]];
     style.push(`--${variant}-${color}: ${value}`);
   });
 });
@@ -79,13 +66,16 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.language}
-      className={`${baseFont.variable} ${displayFont.variable} scroll-smooth`}
+      className="scroll-smooth"
       suppressHydrationWarning
     >
       <head>
+        {/* Use system fonts with CSS variables */}
         <style>
           {`
           :root, :before, :after {
+            --font-space-default: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-space-display: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             ${style.join(';')}
           }
         `}
@@ -114,32 +104,27 @@ export default function RootLayout({
           href="/static/favicons/safari-pinned-tab.svg"
           color="#5bbad5"
         />
-        <meta name="generator" content="Shipixen" />
-        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="generator" content="CrepeLoft" />
+        <meta name="msapplication-TileColor" content="#C8517E" />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
-          content="#fff"
+          content="#F9F2E1"
         />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#000"
+          content="#120B0D"
         />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
 
-      <body className="flex flex-col bg-white text-black antialiased dark:bg-gray-950 dark:text-white min-h-screen">
+      <body className="flex flex-col antialiased min-h-screen bg-secondary-100 text-[#0A0303] dark:bg-[#120B0D] dark:text-[#FFF5F7]">
         <ThemeProviders>
           <AnalyticsWrapper />
-
-          <div className="w-full flex flex-col justify-between items-center font-sans">
-            <SearchProvider>
-              <main className="w-full flex flex-col items-center mb-auto">
-                {children}
-              </main>
-            </SearchProvider>
-          </div>
+          <SearchProvider>
+            {children}
+          </SearchProvider>
         </ThemeProviders>
       </body>
     </html>

@@ -1,18 +1,19 @@
-/* Configure colors at https://shipixen.com/color-theme-explorer-shadcn */
+/* CrepeLoft color palette - Parisian dessert cafe theme */
+/* Rose-magenta primary + warm cream secondary */
 const colors = {
   primary: {
-    lighter: '#fde047',
-    light: '#facc15',
-    main: '#eab308',
-    dark: '#ca8a04',
-    darker: '#a16207',
+    lighter: '#F8D3E4',  // 100
+    light: '#EA8FB8',    // 300
+    main: '#C8517E',     // 500 - main CTA
+    dark: '#A93C63',     // 600
+    darker: '#862D4D',   // 700
   },
   secondary: {
-    lighter: '#6ee7b7',
-    light: '#34d399',
-    main: '#10b981',
-    dark: '#059669',
-    darker: '#047857',
+    lighter: '#FFF9ED',  // 50
+    light: '#F9F2E1',    // 100 - main background
+    main: '#F0E4C9',     // 200
+    dark: '#E3D3AA',     // 300
+    darker: '#D1BC86',   // 400
   },
 };
 
